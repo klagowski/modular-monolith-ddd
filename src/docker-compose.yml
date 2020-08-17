@@ -1,0 +1,64 @@
+version: "3.5"
+
+services:
+  sql-server:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    container_name: sql-server
+    restart: unless-stopped
+    environment:
+        SA_PASSWORD: "123ToHasloDoBazy"
+        ACCEPT_EULA: "Y"
+    networks:
+      - bgv
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql-server:/data/db  
+
+  # mongo:
+  #   image: mongo
+  #   container_name: mongo
+  #   restart: unless-stopped
+  #   ports:
+  #     - 27017:27017
+  #   networks:
+  #     - bgv
+  #   volumes:
+  #     - mongo:/data/db
+
+  # rabbitmq:
+  #   image: rabbitmq:3-management
+  #   container_name: rabbitmq
+  #   restart: unless-stopped
+  #   ports:
+  #     - 5672:5672
+  #     - 15672:15672
+  #   networks:
+  #     - bgv
+    # volumes: 
+    #   - rabbitmq:/var/lib/rabbitmq
+
+  # redis:
+  #   image: redis
+  #   container_name: redis
+  #   restart: unless-stopped
+  #   ports:
+  #     - 6379:6379
+  #   networks:
+  #     - bgv
+  #   volumes: 
+  #     - redis:/data
+
+networks:
+  bgv:
+    name: bgv
+
+volumes:
+  sql-server:
+    driver: local
+  # mongo:
+  #   driver: local
+  # rabbitmq:
+  #   driver: local
+  # redis:
+  #   driver: local

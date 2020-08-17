@@ -1,0 +1,16 @@
+@url_vscode = https://localhost:5001/api/
+@url_vs = https://localhost:44318/api/
+
+
+###
+GET {{url}}weatherforecast
+
+###
+POST {{url_vs}}weatherforecast
+Content-Type: application/json
+
+{
+    "Date": "2019-10-11",
+    "TemperatureC": 20,
+    "Summary": "Summaryaaa"
+}
